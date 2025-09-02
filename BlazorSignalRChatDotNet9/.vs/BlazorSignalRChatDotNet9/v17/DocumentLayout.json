@@ -1,0 +1,54 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\SignalR\\BlazorSignalRChatDotNet9\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{88333285-7053-4D8E-8CDD-864E4653B8CB}|BlazorSignalRChatDotNet9.Client\\BlazorSignalRChatDotNet9.Client.csproj|d:\\signalr\\blazorsignalrchatdotnet9\\blazorsignalrchatdotnet9.client\\pages\\chat.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{88333285-7053-4D8E-8CDD-864E4653B8CB}|BlazorSignalRChatDotNet9.Client\\BlazorSignalRChatDotNet9.Client.csproj|solutionrelative:blazorsignalrchatdotnet9.client\\pages\\chat.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CFA57EBC-32B6-4B8F-AEF0-8F8997A3BA70}|BlazorSignalRChatDotNet9\\BlazorSignalRChatDotNet9.csproj|d:\\signalr\\blazorsignalrchatdotnet9\\blazorsignalrchatdotnet9\\hubs\\chathub.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CFA57EBC-32B6-4B8F-AEF0-8F8997A3BA70}|BlazorSignalRChatDotNet9\\BlazorSignalRChatDotNet9.csproj|solutionrelative:blazorsignalrchatdotnet9\\hubs\\chathub.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 363,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Chat.razor",
+              "DocumentMoniker": "D:\\SignalR\\BlazorSignalRChatDotNet9\\BlazorSignalRChatDotNet9.Client\\Pages\\Chat.razor",
+              "RelativeDocumentMoniker": "BlazorSignalRChatDotNet9.Client\\Pages\\Chat.razor",
+              "ToolTip": "D:\\SignalR\\BlazorSignalRChatDotNet9\\BlazorSignalRChatDotNet9.Client\\Pages\\Chat.razor",
+              "RelativeToolTip": "BlazorSignalRChatDotNet9.Client\\Pages\\Chat.razor",
+              "ViewState": "AgIAACcAAAAAAAAAAAAAADoAAAAsAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-09-01T15:08:01.634Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ChatHub.cs",
+              "DocumentMoniker": "D:\\SignalR\\BlazorSignalRChatDotNet9\\BlazorSignalRChatDotNet9\\Hubs\\ChatHub.cs",
+              "RelativeDocumentMoniker": "BlazorSignalRChatDotNet9\\Hubs\\ChatHub.cs",
+              "ToolTip": "D:\\SignalR\\BlazorSignalRChatDotNet9\\BlazorSignalRChatDotNet9\\Hubs\\ChatHub.cs",
+              "RelativeToolTip": "BlazorSignalRChatDotNet9\\Hubs\\ChatHub.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAnAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-01T15:00:46.129Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

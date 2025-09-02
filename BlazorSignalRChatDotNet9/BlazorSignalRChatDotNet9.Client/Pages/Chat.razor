@@ -1,0 +1,67 @@
+﻿@page "/chat"
+@inject NavigationManager NavigationManager
+@rendermode InteractiveWebAssembly // Runs client-side in the browser
+
+@* Client-side Component *@
+
+<h3>Chat</h3>
+
+@if(IsConnected)
+{
+    <input type="text" @bind="userInput" />
+    <input type="text" @bind="messageInput" />
+    <button @onclick="Send">Send</button>
+
+    <ul id="messageList">
+        @foreach (var message in messages)
+        {
+            <li>@message</li>
+        }
+    </ul>
+}
+else
+{
+    <p><em>Connecting...</em></p>
+}
+
+@code {
+    // Define hub connection field
+    private HubConnection? hubConnection;
+    private List<string> messages = new List<string>();
+    private string? userInput;
+    private string? messageInput;
+
+
+    protected override async Task OnInitializedAsync()
+    {
+        // Initialize the hub connection to the server hub
+        hubConnection = new HubConnectionBuilder()
+            .WithUrl(NavigationManager.ToAbsoluteUri("/chathub"))
+            .WithAutomaticReconnect() // Enable automatic reconnect to manage reconnections
+            .Build();
+
+        // ReceiveMessage handler adds incoming messages to the list and updates UI
+        hubConnection.On<string, string>("ReceiveMessage", (user, message) =>
+        {
+            var encodedMsg = $"{user}: {message}";
+            messages.Add(encodedMsg);
+            InvokeAsync(StateHasChanged); // Ensure UI updates when new messages arrive
+        });
+
+        // Start the connection
+        await hubConnection.StartAsync();
+    }
+
+    Task Send() => hubConnection.SendAsync("SendMessage", userInput, messageInput);
+    
+    // Check if the connection is established
+    public bool IsConnected =>
+        hubConnection?.State == HubConnectionState.Connected;
+}
+
+@* Data Flow:
+    1. User types message → clicks Send
+    2. Client calls hubConnection.SendAsync("SendMessage", user, message)
+    3. Server's ChatHub.SendMessage() receives it
+    4. Server broadcasts to all clients via Clients.All.SendAsync()
+    5. All clients receive message and update their UI *@

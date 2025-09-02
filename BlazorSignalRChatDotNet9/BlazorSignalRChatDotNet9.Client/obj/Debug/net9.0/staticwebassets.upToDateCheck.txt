@@ -1,0 +1,4 @@
+wwwroot\appsettings.Development.json
+wwwroot\appsettings.json
+D:\SignalR\BlazorSignalRChatDotNet9\BlazorSignalRChatDotNet9.Client\wwwroot\appsettings.Development.json
+D:\SignalR\BlazorSignalRChatDotNet9\BlazorSignalRChatDotNet9.Client\wwwroot\appsettings.json

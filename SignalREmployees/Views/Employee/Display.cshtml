@@ -1,0 +1,71 @@
+﻿
+@{
+    ViewData["Title"] = "View Employees";
+}
+
+<div class="container mt-5">
+    <h2>Employee List</h2>
+
+    <div id="employeesList" class="mt-4">
+        <p>Loading employees...</p>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/microsoft/signalr/dist/browser/signalr.js"></script>
+    <script>
+        const connection = new signalR.HubConnectionBuilder()
+            .withUrl("/employeeHub")
+            .build();
+
+        // Start connection
+        connection.start()
+            .then(() => {
+                // Load existing employees
+                connection.invoke("GetEmployees")
+                    .then(employees => {
+                        displayEmployees(employees);
+                    })
+                    .catch(err => console.error(err.toString()));
+            })
+            .catch(err => console.error(err.toString()));
+
+        // Listen for new employees
+        connection.on("ReceiveEmployee", (employee) => {
+            const employeesList = document.getElementById('employeesList');
+            const employeeElement = createEmployeeElement(employee);
+            employeesList.appendChild(employeeElement);
+        });
+
+        function displayEmployees(employees) {
+            const employeesList = document.getElementById('employeesList');
+
+            if (employees.length === 0) {
+                employeesList.innerHTML = '<p>No employees found.</p>';
+                return;
+            }
+
+            employeesList.innerHTML = '';
+            employees.forEach(employee => {
+                const employeeElement = createEmployeeElement(employee);
+                employeesList.appendChild(employeeElement);
+            });
+        }
+
+        function createEmployeeElement(employee) {
+            const div = document.createElement('div');
+            div.className = 'card mb-3';
+            div.innerHTML = `
+                <div class="card-body">s
+                    <h5 class="card-title">${employee.name}</h5>
+                    <p class="card-text">
+                        <strong>Address:</strong> ${employee.address}<br>
+                        <strong>Age:</strong> ${employee.age}
+                    </p>
+                    <small class="text-muted">ID: ${employee.id}</small>
+                </div>
+            `;
+            return div;
+        }
+    </script>
+}

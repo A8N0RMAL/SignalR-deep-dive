@@ -1,0 +1,75 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Chat</h1>
+
+<input type="text" id="txt"/>
+<input type="button" value="send" onclick="send()"/>
+<br />
+
+<input type="text" id="grouptxt" />
+<input type="button" value="join" onclick="join()" />
+<br />
+
+<input type="button" value="Send Message To Group" onclick="sendMessageToGroup()" />
+<br />
+
+<ul id="ul">
+
+</ul>
+
+@section Scripts
+{
+    <script src="~/microsoft/signalr/dist/browser/signalr.js"></script>
+    <script>
+        
+        // get user name
+        var name = prompt("Enter your name");
+
+        // defince connection
+        connection = new signalR.HubConnectionBuilder().withUrl("/chat").build();
+
+        // start connection
+        connection.start();
+
+        // define call back function
+        connection.on("newMessage", function(n, m)
+        {
+            $("#ul").append("<li>"+n+ " : " +m+"</li>");
+        })
+
+        connection.on("newMember", function(n, g)
+        {
+            $("#ul").append("<li><bold>" + n + " joined " + g + "</bold></li>");
+        })
+
+        connection.on("newGroupMessage", function(g, n, m)
+        {
+            $("#ul").append("<li>" + "[ " + g + " ]" + " : " + n + " : " + m + "</li>");
+        })
+
+        connection.on("controllerMessage", function(m)
+        {
+            $("#ul").append("<li>" +m+ "</li>");
+        })
+
+        // define function to consume service
+        function send()
+        {
+            connection.invoke("sendMessage", name, $("#txt").val())
+        }
+
+        function join()
+        {
+            connection.invoke("joinGroup", $("#grouptxt").val(), name)
+        }
+
+        function sendMessageToGroup()
+        {
+            connection.invoke("sendMessageToGroup", $("#grouptxt").val(), name, $("#txt").val())
+        }
+
+    </script>
+}
